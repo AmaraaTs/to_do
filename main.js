@@ -4,13 +4,12 @@ const taskProgressList = document.getElementById("taskProgressList");
 const taskDoneList = document.getElementById("taskDoneList");
 const taskBlockedList = document.getElementById("taskBlockedList");
 const addTaskBtn = document.getElementById("addTaskBtn");
+const saveBtn = document.getElementById("save-btn");
+const taskInput = document.getElementById("task-input");
+const taskStatus = document.getElementById("status");
 
 // VARIABLES FOR TASK
 const tasks = [
-  {
-    name: "Task One",
-    status: "TODO",
-  },
   {
     name: "Task Two",
     status: "INPROGRESS",
@@ -21,7 +20,7 @@ const tasks = [
   },
 ];
 
-function draw() {
+function zurah() {
   taskTodoList.innerHTML = "";
   taskProgressList.innerHTML = "";
   taskDoneList.innerHTML = "";
@@ -67,14 +66,21 @@ function draw() {
   }
 }
 
-addTaskBtn.addEventListener("click", function () {
+saveBtn.addEventListener("click", function () {
   const newTask = {
-    name: "Шинэ ажил",
-    status: "TODO",
+    name: taskInput.value,
+    status: taskStatus.value,
   };
   tasks.push(newTask);
-  draw();
+  zurah();
   console.log("TASKS", tasks);
 });
 
-draw();
+const deleteBtn = document.getElementsByClassName("bi-trash")[i];
+deleteBtn.addEventListener("click", function () {
+  tasks[i].splice(i, 1);
+  zurah();
+  console.log("TASKS", tasks);
+});
+
+zurah();
