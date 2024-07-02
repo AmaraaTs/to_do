@@ -13,7 +13,7 @@
     />
     <title>Todop Application</title>
   </head>
-  <body>
+  <body class="bg-dark">
     <!-- Todo -->
     <!-- data-bs-toggle="modal"
           data-bs-target="#taskModal" -->
@@ -30,10 +30,10 @@
       </div>
       <div class="row gy-5">
         <div class="col">
-          <div class="card card-width">
+          <div class="card card-width bg-black border-secondary">
             <div class="card-header d-flex justify-content-between">
-              <span>To do</span>
-              <span>5</span>
+              <span class="text-white">To do</span>
+              <span class="text-white-50">5</span>
             </div>
             <div class="card-body" id="taskTodoList">
               <!-- Card -->
@@ -43,28 +43,28 @@
           </div>
         </div>
         <div class="col">
-          <div class="card card-width">
+          <div class="card card-width bg-black border-secondary">
             <div class="card-header d-flex justify-content-between">
-              <span>In Progress</span>
-              <span>0</span>
+              <span class="text-white">In Progress</span>
+              <span class="text-white-50">0</span>
             </div>
             <div class="card-body" id="taskProgressList"></div>
           </div>
         </div>
         <div class="col">
-          <div class="card card-width">
+          <div class="card card-width bg-black border-secondary">
             <div class="card-header d-flex justify-content-between">
-              <span>Done</span>
-              <span>0</span>
+              <span class="text-white">Done</span>
+              <span class="text-white-50">0</span>
             </div>
             <div class="card-body" id="taskDoneList"></div>
           </div>
         </div>
         <div class="col">
-          <div class="card card-width">
+          <div class="card card-width bg-black border-secondary">
             <div class="card-header d-flex justify-content-between">
-              <span>Blocked</span>
-              <span>0</span>
+              <span class="text-white">Blocked</span>
+              <span class="text-white-50">0</span>
             </div>
             <div class="card-body" id="taskBlockedList"></div>
           </div>
@@ -76,9 +76,11 @@
     <!-- Modal -->
     <div class="modal fade" id="taskModal" tabindex="-1">
       <div class="modal-dialog">
-        <div class="modal-content">
+        <div class="modal-content bg-dark">
           <div class="modal-header">
-            <h1 class="modal-title fs-5" id="exampleModalLabel">Task</h1>
+            <h1 class="modal-title fs-5 text-white" id="exampleModalLabel">
+              Enter task
+            </h1>
             <button
               type="button"
               class="btn-close"
@@ -87,37 +89,37 @@
             ></button>
           </div>
           <div class="modal-body">
-            <label for="exampleFormControlInput1" class="form-label"
-              >Title</label
-            >
             <input
               type="text"
-              class="form-control"
+              class="form-control bg-dark text-white-50 border-secondary"
               id="task-input"
-              placeholder="add new task"
+              placeholder="Task name..."
             />
-            <select name="status" id="status">
+            <select
+              name="status border-secondary bg-dark text-dark"
+              id="status"
+            >
               <option value="TODO">To do</option>
-              <option value="INPROGRESS">Хийж байгаа</option>
+              <option value="INPROGRESS">In progress</option>
               <option value="DONE">Done</option>
               <option value="BLOCKED">Blocked</option>
             </select>
           </div>
           <div class="modal-footer">
-            <button
+            <!-- <button
               type="button"
               class="btn btn-secondary"
               data-bs-dismiss="modal"
             >
               Close
-            </button>
+            </button> -->
             <button
               type="button"
-              class="btn btn-primary"
+              class="btn btn-primary btn-success"
               id="save-btn"
               data-bs-dismiss="modal"
             >
-              Хадгалах
+              Submit
             </button>
           </div>
         </div>

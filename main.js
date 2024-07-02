@@ -28,15 +28,38 @@ function zurah() {
 
   for (let i = 0; i < tasks.length; i++) {
     console.log("TASKS", tasks);
+    let borderColor = "";
+    switch (tasks[i].status) {
+      case "TODO": {
+        borderColor = "border-white";
+        break;
+      }
+      case "INPROGRESS": {
+        borderColor = "border-warning";
+        break;
+      }
+      case "DONE": {
+        borderColor = "border-success";
+        break;
+      }
+      case "BLOCKED": {
+        borderColor = "border-danger";
+        break;
+      }
+      default: {
+        console.log("ALDAA GARLAA");
+      }
+    }
+
     const newTaskCard = `
-    <div class="d-flex justify-content-between align-items-center border border-1 rounded p-2">
+    <div class="d-flex justify-content-between align-items-center border border-1 ${borderColor} rounded p-2 bg-dark text-white-50">
     <span>${tasks[i].name}</span>
     <div>
         <button class="btn">
-        <i class="bi bi-pencil"></i>
+        <i class="bi bi-pencil text-white-50"></i>
         </button>
         <button class="btn">
-        <i class="bi bi-trash"></i>
+        <i class="bi bi-trash text-danger" onclick="deleteTask(${i})"></i>
         </button>
     </div>
     </div>
@@ -73,14 +96,11 @@ saveBtn.addEventListener("click", function () {
   };
   tasks.push(newTask);
   zurah();
-  console.log("TASKS", tasks);
-});
-
-const deleteBtn = document.getElementsByClassName("bi-trash")[i];
-deleteBtn.addEventListener("click", function () {
-  tasks[i].splice(i, 1);
-  zurah();
-  console.log("TASKS", tasks);
 });
 
 zurah();
+
+const deleteTask = (taskIndex) => {
+  tasks.splice(taskIndex, 1);
+  zurah();
+};
