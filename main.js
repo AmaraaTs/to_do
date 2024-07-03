@@ -7,10 +7,18 @@ const addTaskBtn = document.getElementById("addTaskBtn");
 const saveBtn = document.getElementById("save-btn");
 const taskInput = document.getElementById("task-input");
 const taskStatus = document.getElementById("status");
+const todoCountEl = document.getElementById("todo-count");
+const progressCountEl = document.getElementById("progress-count");
+const doneCountEl = document.getElementById("done-count");
+const blockedCountEl = document.getElementById("blocked-count");
 
 // VARIABLES FOR TASK
 let isEdited = false;
 let editedIndex = -1;
+let todoCount = 0;
+let progressCount = 0;
+let doneCount = 0;
+let blockedCount = 0;
 
 const tasks = [
   {
@@ -28,6 +36,10 @@ function zurah() {
   taskProgressList.innerHTML = "";
   taskDoneList.innerHTML = "";
   taskBlockedList.innerHTML = "";
+  todoCount = 0;
+  progressCount = 0;
+  doneCount = 0;
+  blockedCount = 0;
 
   for (let i = 0; i < tasks.length; i++) {
     console.log("TASKS", tasks);
@@ -35,18 +47,22 @@ function zurah() {
     switch (tasks[i].status) {
       case "TODO": {
         borderColor = "border-white";
+
         break;
       }
       case "INPROGRESS": {
         borderColor = "border-warning";
+
         break;
       }
       case "DONE": {
         borderColor = "border-success";
+
         break;
       }
       case "BLOCKED": {
         borderColor = "border-danger";
+
         break;
       }
       default: {
@@ -72,25 +88,37 @@ function zurah() {
     switch (tasks[i].status) {
       case "TODO": {
         taskTodoList.innerHTML += newTaskCard;
+        todoCount += 1;
         break;
       }
       case "INPROGRESS": {
         taskProgressList.innerHTML += newTaskCard;
+        progressCount += 1;
         break;
       }
       case "DONE": {
         taskDoneList.innerHTML += newTaskCard;
+        doneCount += 1;
         break;
       }
       case "BLOCKED": {
         taskBlockedList.innerHTML += newTaskCard;
+        blockedCount += 1;
         break;
       }
       default: {
         console.log("ALDAA GARLAA");
       }
     }
+    todoCountEl.textContent = todoCount;
+    progressCountEl.textContent = progressCount;
+    doneCountEl.textContent = doneCount;
+    blockedCountEl.textContent = blockedCount;
   }
+  console.log(todoCount);
+  console.log(progressCount);
+  console.log(doneCount);
+  console.log(blockedCount);
 }
 
 zurah();
