@@ -9,6 +9,9 @@ const taskInput = document.getElementById("task-input");
 const taskStatus = document.getElementById("status");
 
 // VARIABLES FOR TASK
+let isEdited = false;
+let editedIndex = -1;
+
 const tasks = [
   {
     name: "Task Two",
@@ -56,7 +59,8 @@ function zurah() {
     <span>${tasks[i].name}</span>
     <div>
         <button class="btn">
-        <i class="bi bi-pencil text-white-50"></i>
+        <i class="bi bi-pencil text-white-50" data-bs-toggle="modal"
+          data-bs-target="#taskModal" onclick ="editTask(${i})"></i>
         </button>
         <button class="btn">
         <i class="bi bi-trash text-danger" onclick="deleteTask(${i})"></i>
@@ -89,18 +93,34 @@ function zurah() {
   }
 }
 
+zurah();
+
 saveBtn.addEventListener("click", function () {
-  const newTask = {
-    name: taskInput.value,
-    status: taskStatus.value,
-  };
-  tasks.push(newTask);
+  if (isEdited) {
+    tasks[editedIndex].name = taskInput.value;
+    tasks[editedIndex].status = taskStatus.value;
+    isEdited = false;
+  } else {
+    const newTask = {
+      name: taskInput.value,
+      status: taskStatus.value,
+    };
+    tasks.push(newTask);
+  }
+  taskInput.value = "";
+  taskStatus.value = "TODO";
   zurah();
 });
-
-zurah();
 
 const deleteTask = (taskIndex) => {
   tasks.splice(taskIndex, 1);
   zurah();
+};
+
+const editTask = (taskIndex) => {
+  console.log(taskIndex);
+  taskInput.value = tasks[taskIndex].name;
+  taskStatus.value = tasks[taskIndex].status;
+  isEdited = true;
+  editedIndex = taskIndex;
 };
